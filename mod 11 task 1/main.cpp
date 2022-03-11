@@ -39,6 +39,7 @@ int main() {
     std::string str;
     std::string str2;
     std::string str3;
+    std::cout << "Input text \n";
     std::getline(std::cin, str);
     int x;
     std::cin >> x;
