@@ -1,3 +1,0 @@
-D:/SkillboxProject/mod 11 task 1/cmake-build-debug/CMakeFiles/mod_11_task_1.dir
-D:/SkillboxProject/mod 11 task 1/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/SkillboxProject/mod 11 task 1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
