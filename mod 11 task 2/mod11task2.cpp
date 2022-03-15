@@ -2,26 +2,34 @@
 
 std::string Email_Address_Verification (std::string str) {
     bool coincidence = true;
-    int emailCenter;
     std::string part1;
     std::string part2;
-    for (int i = 0; i < str.length(); ++i) {
-        for (;str[i] != '@';) {
-            part1 += str[i];
+
+    int i = 0;
+    for (; i < str.length() && str[i] != 64 && i < 65; ++i) {
+        int x = str[i]; // (№ ASC2)
+        if ((str[i] == '.' && str[i+1] == '.') || x < 33 || x > 126 || x == 34 || x == 40 || x == 41 || x == 44 ||
+                (x > 57 && x < 61) || x == 62 || (x > 90 && x < 94)) {
+            coincidence = false;
+            i = 129;
+            break;
         }
-        for (;str[i] < str.length();) {
-            part2 += str[i];
-        }
+        part1 += str[i];
     }
-    std::cout << part1 << "\n";
-    std::cout << part2 << "\n";
 
-    if (part1.length() < 1 || part1.length() > 63 || part2.length() < 1 || part2.length() > 64) coincidence = false;
+    for (i += 1; i < str.length() && i < 129; ++i) {
+        int x = str[i]; // (№ ASC2)
+        if ((str[i] == '.' && str[i-1] == '.') || x < 45 || x > 122 || x == 47 || (x > 57 && x < 65) ||
+                (x > 90 && x < 97)) {
+            coincidence = false;
+            break;
+        }
+        part2 += str[i];
+    }
 
-
-
-    return (coincidence ? "Yes\n" : "No\n");
-
+   if (part1.length() < 1 || part1.length() > 63 || part2.length() < 1 || part2.length() > 64
+        ||  part1[0] == '.' || part1[part1.length()-1] == '.'  || part2[0] == '.' || part2[part1.length()-1] == '.') coincidence = false;
+   return (coincidence ? "Yes\n" : "No\n");
 }
 
 int main () {
