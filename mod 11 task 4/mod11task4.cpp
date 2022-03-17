@@ -4,8 +4,8 @@ std::string Integer (std::string strNumber) {
     std::string integer;
     std::string fractionalNumber;
     int i = 0;
-    for (; i < strNumber.length(); i++) {
-        for (; strNumber[i] != '.'; i++) {
+    for (; i < strNumber.length();) {
+        for (; i < strNumber.length() && strNumber[i] != '.'; i++) {
             integer += strNumber[i];
         }
         i++;
@@ -19,8 +19,8 @@ std::string FractionalNumber (std::string strNumber) {
     std::string integer;
     std::string fractionalNumber;
     int i = 0;
-    for (; i < strNumber.length(); i++) {
-        for (; strNumber[i] != '.'; i++) {
+    for (; i < strNumber.length();) {
+        for (; i < strNumber.length() && strNumber[i] != '.'; i++) {
             integer += strNumber[i];
         }
         i++;
@@ -83,41 +83,43 @@ int main() {
 
     int i1 = 0;
     int i2 = 0;
-    int length1 = ((int) integer1.length());
-    int length2 = ((int) integer2.length());
-    std::cout << length1 << "\n";
-    std::cout << length2 << "\n";
-
+    int x1 = 0;
+    int x2 = 0;
     bool checkbox1 = true;
     bool checkbox2 = true;
 
-    while (i1 < length1 || i2 < length1) {
+    while (i1 < integer1.length() || i2 < integer2.length()) {
         while (integer1[i1] == '0' && checkbox1) {
             i1++;
-            length1 -= 1;
+            x1++;
         }
         checkbox1 = false;
 
         while (integer2[i2] == '0' && checkbox2) {
             i2++;
-            length2 -= 1;
+            x2++;
         }
         checkbox2 = false;
-        std::cout << length1 << "\n";
-        std::cout << length2 << "\n";
 
-        if (integer1[0] == '-' && integer2[0] != '-' || ((integer1[i1] == integer1[length1-1])
-                && length1 < length2) || (length1 == length2 && integer1[i1] < integer2[i2])) {
+        if (integer1[0] == '-' && integer2[0] != '-' || ((integer1[i1] == integer1[integer1.length() - 1 - x1])
+                                                         && integer1.length() < integer2.length()) ||
+            (integer1.length() == integer2.length() && integer1[i1] < integer2[i2])) {
             std::cout << "Less\n";
             return 0;
         }
-        if (integer2[0] == '-' && integer1[0] != '-' || ((integer2[i2] == integer2[length2-1])
-                && length2 < length1) || (length2 == length1 && integer2[i2] < integer1[i1])) {
+        if (integer2[0] == '-' && integer1[0] != '-' || ((integer2[i2] == integer2[strNumber2.length() - 1 - x2])
+                                                         && integer2.length() < integer1.length()) ||
+            (integer2.length() == integer1.length() && integer2[i2] < integer1[i1])) {
             std::cout << "More\n";
             return 0;
         }
         i1++;
         i2++;
+    }
+
+    if (fractionalNumber1 == "" && fractionalNumber2 == "") {
+        std::cout << "Equal\n";
+        return 0;
     }
 
     for (int i = 0; i < fractionalNumber1.length() && i < fractionalNumber2.length(); i++) {
