@@ -18,10 +18,8 @@ std::string IP_Address_Validation_IPv4 (std::string str) {
                 break;
             }
             partStr += str[i];
-            xPartStr = (xPartStr + str[i] - '0') * 10;
+            xPartStr = xPartStr * 10 + str[i] - '0';
         }
-        xPartStr /= 10;
-
         if (partStr.length() < 1 || xPartStr > 255 || partStr.length() == 2 && xPartStr < 10 ||
                 partStr.length() == 3 && xPartStr < 100) {
             coincidence = false;
