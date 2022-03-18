@@ -6,8 +6,8 @@ std::string IP_Address_Validation_IPv4 (std::string str) {
     int i = 0;
     int counter = 0;
 
-    for (; i <= str.length(); i++) {
-        if (str[i] == '.') {
+    for (; i < str.length(); i++) {
+        if (str[str.length()-1] == '.') {
             coincidence = false;
             break;
         }
@@ -39,6 +39,4 @@ int main() {
     getline(std::cin, str);
 
     std::cout << IP_Address_Validation_IPv4 (str);
-
-    return 0;
 }
