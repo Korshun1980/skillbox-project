@@ -3,10 +3,11 @@
 std::string Integer (std::string strNumber) {
     std::string integer;
     int i = 0;
-    while (strNumber[i] == '0') i++;
+    while (strNumber[i] == '0' || strNumber[i] == '-') i++;
     for (; i < strNumber.length() && strNumber[i] != '.'; i++) {
         integer += strNumber[i];
     }
+    if(integer == "") integer = "0";
     return integer;
 }
 std::string FractionalNumber (std::string strNumber) {
@@ -74,12 +75,18 @@ int main() {
 
     for (int i = 0 ;i < integer1.length() && i < integer2.length(); ++i) {
 
-        if (integer1[0] == '-' && integer2[0] != '-' || integer1.length() < integer2.length() || (integer1.length() == integer2.length() && integer1[i] < integer2[i])) {
-            std::cout << "Less\n";
+        if (strNumber1[0] == '-' && strNumber2[0] != '-' && integer1[0] != '0' || integer1.length() < integer2.length()
+                || (integer1.length() == integer2.length() && integer1[i] < integer2[i])) {
+            if (strNumber1[0] == '-' && strNumber2[0] == '-') {
+                std::cout << "More\n";
+            } else std::cout << "Less\n";
             return 0;
         }
-        if (integer2[0] == '-' && integer1[0] != '-' || integer2.length() < integer1.length() || (integer2.length() == integer1.length() && integer2[i] < integer1[i])) {
-            std::cout << "More\n";
+        if (strNumber2[0] == '-' && strNumber1[0] != '-' && integer2[0] != '0' || integer2.length() < integer1.length()
+                || (integer2.length() == integer1.length() && integer2[i] < integer1[i])) {
+            if (strNumber1[0] == '-' && strNumber2[0] == '-') {
+                std::cout << "Less\n";
+            } else std::cout << "More\n";
             return 0;
         }
     }
@@ -95,11 +102,15 @@ int main() {
     for (int i = 0; i < fractionalNumber1.length() && i < fractionalNumber2.length(); i++) {
 
         if (fractionalNumber1[i] < fractionalNumber2[i]) {
-            std::cout << "Less\n";
+            if (strNumber1[0] == '-' && strNumber2[0] == '-') {
+                std::cout << "More\n";
+            } else std::cout << "Less\n";
             return 0;
         }
         if (fractionalNumber2[i] < fractionalNumber1[i]) {
-            std::cout << "More\n";
+            if (strNumber1[0] == '-' && strNumber2[0] == '-') {
+                std::cout << "Less\n";
+            } else std::cout << "More\n";
             return 0;
         }
     }
