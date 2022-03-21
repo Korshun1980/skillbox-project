@@ -31,7 +31,7 @@ std::string encrypt_caesar (std::string str, int x) {
 }
 
 std::string decrypt_caesar (std::string str, int x) {
-    return encrypt_caesar(str, x);
+    return encrypt_caesar(str, -x);
 }
 
 
@@ -45,7 +45,7 @@ int main() {
 
     str2 = encrypt_caesar(str, x);
 
-    str3 = decrypt_caesar(str2, -x);
+    str3 = decrypt_caesar(str2, x);
 
     std::cout << str2 << std::endl;
 
