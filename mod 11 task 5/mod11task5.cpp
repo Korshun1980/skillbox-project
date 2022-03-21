@@ -10,13 +10,6 @@ bool Winning_combination (std::string str123, std::string xo, int max, int step,
             break;
         }
     }
-    if (checkWinnings == false) {
-        std::string strField1;
-        std::string strField2;
-        strField1 = strField1 + str123[0] + str123[4] + str123[8];
-        strField2 = strField2 + str123[2] + str123[4] + str123[6];
-        if (strField1 == xo || strField2 == xo) checkWinnings = true;
-    }
     return checkWinnings;
 }
 bool Checking_characters_in_a_string (std::string str){
@@ -52,8 +45,22 @@ int main() {
         if (str123[i] == 'X') x++;
         if (str123[i] == 'O') o++;
     }
-    bool strX = ((Winning_combination(str123, "XXX", 7, 3, 1, 2)) || (Winning_combination(str123, "XXX", 3, 1, 3, 6)));
-    bool strO = ((Winning_combination(str123, "OOO", 7, 3, 1, 2)) || (Winning_combination(str123, "OOO", 3, 1, 3, 6)));
+    bool strX = false;
+    bool strO = false;
+    std::string strField1;
+    std::string strField2;
+    strField1 = strField1 + str123[0] + str123[4] + str123[8];
+    strField2 = strField2 + str123[2] + str123[4] + str123[6];
+    if (strField1 == "XXX" || strField2 == "XXX") {
+        strX = true;
+    } else if (strField1 == "OOO" || strField2 == "OOO") {
+        strO = true;
+    } else {
+        strX = ((Winning_combination(str123, "XXX", 7, 3, 1, 2))
+                || (Winning_combination(str123, "XXX", 3, 1, 3, 6)));
+        strO = ((Winning_combination(str123, "OOO", 7, 3, 1, 2))
+                || (Winning_combination(str123, "OOO", 3, 1, 3, 6)));
+    }
     if (x > o + 1 || o > x || (x == o && (strX == 1)) || (x > o && (strO == 1)) || strX + strO == 2) {
         std::cout << "Incorrect\n";
     } else if (strX) {
