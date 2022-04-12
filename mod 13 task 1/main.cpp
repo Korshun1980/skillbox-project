@@ -16,13 +16,15 @@ int main() {
     }
     std::cout << "What value to remove from the vector? \n";
     std::cin >> number;
-    for (int i = vec.size()-1; i >= 0; --i) {
-        if (vec[i] == number) {
-            for (int c = i; c < vec.size() - 1; ++c)
-                vec[c] = vec[c+1];
-            vec.pop_back();
+    int c = 0;
+    for (int i = 0; i < amount; ++i) {
+        while (vec[i+c] == number) {
+            ++c;
+            --amount;
         }
+        vec[i] = vec[i + c];
     }
+    vec.resize(amount);
     if (vec.empty()) std::cout << "No numbers left!!!\n";
     for (int i = 0; i < vec.size(); ++i)
         std::cout << vec[i] << " ";
