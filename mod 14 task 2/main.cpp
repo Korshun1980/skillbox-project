@@ -18,8 +18,8 @@ int main() {
         std::cout << "\n";
     }
     char x_or_o = ' ';
-    for (int k = 1;; ++k) {
-        if (k == 1 || k % 2 != 0) {
+    for (int k = 0;; ++k) {
+        if (k == 0 || k % 2 == 0) {
             x_or_o = 'X';
         } else x_or_o = 'O';
         std::cout << "Enter coordinates:";
@@ -42,9 +42,7 @@ int main() {
                 std::cout << xo[i][j] << " ";
             std::cout << "\n";
         }
-        std::cout << k <<"!!!!!!!!!!!!!!\n";
-
-            if (k > 4 && ((xo[i][0] == xo[i][2] && xo[i][2] == xo[i][4]) || (xo[0][j] == xo[2][j] && xo[2][j] == xo[4][j])
+            if (k > 3 && ((xo[i][0] == xo[i][2] && xo[i][2] == xo[i][4]) || (xo[0][j] == xo[2][j] && xo[2][j] == xo[4][j])
             // Плюс диагонали!!! Ниже попробовал через цикл но наверное не правильно т.к. цикл у меня получился хуже чем if.
                     || (xo[0][0] == xo[2][2] && xo[2][2] == xo[4][4]) || (xo[0][4] == xo[2][2] && xo[2][2] == xo[4][0]))) {
                 std::cout << "Won " << x_or_o << "\n";
