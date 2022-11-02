@@ -8,7 +8,7 @@ void evendigits (long long n, int& ans) {
 }
 
 int main() {
-    long long n = 9223372036854775806;
+    long long n = 9223372036854775804;
     int ans = 0;
     if (n == 0) {
         ++ans;
