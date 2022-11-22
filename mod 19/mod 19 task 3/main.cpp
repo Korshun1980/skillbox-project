@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 
 int main() {
     std::ifstream worksheet;
@@ -26,6 +27,7 @@ int main() {
     while (!(worksheet.is_open())) {
         std::cout << "ERROR!!! Input valid directory\n";
         getline(std::cin, directory);
+        worksheet.open(directory);
     }
 
     while (!worksheet.eof()){
@@ -42,6 +44,6 @@ int main() {
         }
     }
         std::cout << sum << "\n" << nameMax << " " << surnameMax << " " << moneyMax << "\n";
-
+    worksheet.close();
     return 0;
 }
